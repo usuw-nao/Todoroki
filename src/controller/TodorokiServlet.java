@@ -1,12 +1,19 @@
 package controller;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dao.DaoFactory;
+import dao.MasterDao;
+import domain.Master;
 
 /**
  * Servlet implementation class TodorokiServlet
@@ -20,8 +27,30 @@ public class TodorokiServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/view/Todoroki.jsp")
-				.forward(request, response);
+		try {
+			MasterDao masterDao = DaoFactory.createMasterDao();
+			List<Master> masterList = masterDao.findAll();
+			request.setAttribute("masterList", masterList);
+
+			String rdate = request.getParameter("rdate");
+			if (rdate != null) {
+				List<Master> planList = new ArrayList<>();
+				SimpleDateFormat sdf = new SimpleDateFormat("y-MM-dd");
+				for (Master master : masterList) {
+					if (sdf.format(master.getRdate()).equals(rdate)) {
+						planList.add(master);
+					}
+				}
+				request.setAttribute("planList", planList);
+				if (planList.size() == 0) {
+					request.setAttribute("planMessage", "予定はありません");
+				}
+			}
+			request.getRequestDispatcher("/WEB-INF/view/Todoroki.jsp")
+					.forward(request, response);
+		} catch (Exception e) {
+			throw new ServletException(e);
+		}
 	}
 
 	/**

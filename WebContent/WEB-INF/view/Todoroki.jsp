@@ -41,58 +41,51 @@
 	<form action="">
 
 		<p>
-			日付を選択してください。 <input type="text" name="day" id="datepicker">
+			日付を選択してください。 <input type="text" name="rdate" id="datepicker">
 		</p>
 		<input type="submit" value="決定">
 	</form>
 
 	<hr color="blue">
 
-	<h1>イベント情報</h1>
-	<h2>お知らせ</h2>
-	<p>～現在はありません～</p>
-	<br>
-	<h2>開催予定イベント</h2>
+	<h2>ToDoRoKiサッカー教室イベント日程</h2>
 	<table border="1">
 		<tr>
-			<th>NO.</th>
-			<th>イベント名</th>
+			<th>教室名</th>
 			<th>日にち</th>
-			<th>場所</th>
-			<th>詳細</th>
 		</tr>
-		<c:forEach items="${iventList}" var="ivent">
-
+		<c:forEach items="${masterList}" var="mL">
 			<tr>
-				<td><c:out value="${ivent.id }" /></td>
-				<td><c:out value="${ivent.name }" /></td>
-				<td><c:out value="${ivent.day }" /></td>
-				<td><c:out value="${ivent.place}" /></td>
-				<td><a href="IventDo?id=<c:out value="${ivent.id }" />">詳細</a></td>
-
+				<td><c:out value="${mL.name}" /></td>
+				<td><c:out value="${mL.rdate}" /></td>
 			</tr>
 		</c:forEach>
 	</table>
 
-
-
 	<hr color="blue">
-
-	<h2>参加予定イベント</h2>
+	<h2>ToDoRoKiサッカー教室イベント</h2>
+	<p>
+		<c:out value="${master.id }" />
+	</p>
 	<table border="1">
 		<tr>
-			<th>NO.</th>
-			<th>イベント名</th>
-			<th>日にち</th>
-			<th>場所</th>
+			<th>教室名</th>
+			<th>8時〜9時</th>
+			<th>9時〜10時</th>
+			<th>10時〜11時</th>
+			<th>11時〜12時</th>
+			<th>12時〜13時</th>
+			<th>13時〜14時</th>
+			<th>14時〜15時</th>
+			<th>15時〜16時</th>
+			<th>16時〜17時</th>
 			<th>詳細</th>
 		</tr>
-		<c:forEach items="${masterList}" var="ivent">
+		<c:forEach items="${planList}" var="master">
 
 			<tr>
-				<td><c:out value="${master.id }" /></td>
-				<td><c:out value="${master.rdate }" /></td>
-				<td><c:out value="${master.r08 }" /></td>
+				<td><c:out value="${master.name }" /></td>
+				<td><c:out value="${master.r08}" /></td>
 				<td><c:out value="${master.r09}" /></td>
 				<td><c:out value="${master.r10}" /></td>
 				<td><c:out value="${master.r11}" /></td>
@@ -103,11 +96,17 @@
 				<td><c:out value="${master.r16}" /></td>
 				<td><c:out value="${master.r17}" /></td>
 
-				<td><a href="MasterDo?id=<c:out value="${master.id }" />">詳細</a></td>
+
 
 			</tr>
 		</c:forEach>
 	</table>
+
+
+
+	<hr color="blue">
+
+
 
 	<hr color="blue">
 	<p>

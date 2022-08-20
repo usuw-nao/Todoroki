@@ -24,7 +24,7 @@ public class MasterDaoImpl implements MasterDao {
 		List<Master> masterList = new ArrayList<>();
 
 		try (Connection con = ds.getConnection()) {
-			String sql = "select * from master order by id DESC";
+			String sql = "select * from master ";
 			PreparedStatement pStmt = con.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
 			while (rs.next()) {
@@ -41,6 +41,7 @@ public class MasterDaoImpl implements MasterDao {
 	private Master mapToMaster(ResultSet rs) throws Exception {
 		Master master = new Master();
 		master.setId(rs.getInt("id"));
+		master.setName(rs.getString("name"));
 		master.setRdate(rs.getDate("rdate"));
 		master.setR08(rs.getString("r08"));
 		master.setR09(rs.getString("r09"));
