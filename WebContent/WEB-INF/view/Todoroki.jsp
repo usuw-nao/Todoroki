@@ -64,44 +64,48 @@
 
 	<hr color="blue">
 	<h2>ToDoRoKiサッカー教室イベント</h2>
-	<p>
-		<c:out value="${master.id }" />
-	</p>
-	<table border="1">
-		<tr>
-			<th>教室名</th>
-			<th>8時〜9時</th>
-			<th>9時〜10時</th>
-			<th>10時〜11時</th>
-			<th>11時〜12時</th>
-			<th>12時〜13時</th>
-			<th>13時〜14時</th>
-			<th>14時〜15時</th>
-			<th>15時〜16時</th>
-			<th>16時〜17時</th>
-			<th>詳細</th>
-		</tr>
-		<c:forEach items="${planList}" var="master">
-
+	<form action="" method="post">
+		<p>
+			<c:out value="${master.id }" />
+		</p>
+		<table border="1">
 			<tr>
-				<td><c:out value="${master.name }" /></td>
-				<td><c:out value="${master.r08}" /></td>
-				<td><c:out value="${master.r09}" /></td>
-				<td><c:out value="${master.r10}" /></td>
-				<td><c:out value="${master.r11}" /></td>
-				<td><c:out value="${master.r12}" /></td>
-				<td><c:out value="${master.r13}" /></td>
-				<td><c:out value="${master.r14}" /></td>
-				<td><c:out value="${master.r15}" /></td>
-				<td><c:out value="${master.r16}" /></td>
-				<td><c:out value="${master.r17}" /></td>
-
-
+				<th>教室名</th>
+				<th>8時〜9時</th>
+				<th>9時〜10時</th>
+				<th>10時〜11時</th>
+				<th>11時〜12時</th>
+				<th>12時〜13時</th>
+				<th>13時〜14時</th>
+				<th>14時〜15時</th>
+				<th>15時〜16時</th>
+				<th>16時〜17時</th>
+				<th>17時~18時</th>
 
 			</tr>
-		</c:forEach>
-	</table>
 
+			<c:forEach items="${planList}" var="master">
+
+
+				<tr>
+					<td><c:out value="${master.name }" /></td>
+					<td><c:out value="${master.r08}" /><p><a href="Form">予約する</a></p></td>
+					<td><c:out value="${master.r09}" /><p><a href="">予約する</a></p></td>
+					<td><c:out value="${master.r10}" /><p><a href="">予約する</a></p></td>
+					<td><c:out value="${master.r11}" /><p><a href="">予約する</a></p></td>
+					<td><c:out value="${master.r12}" /><p><a href="">予約する</a></p></td>
+					<td><c:out value="${master.r13}" /><p><a href="">予約する</a></p></td>
+					<td><c:out value="${master.r14}" /><p><a href="">予約する</a></p></td>
+					<td><c:out value="${master.r15}" /><p><a href="">予約する</a></p></td>
+					<td><c:out value="${master.r16}" /><p><a href="">予約する</a></p></td>
+					<td><c:out value="${master.r17}" /><p><a href="">予約する</a></p></td>
+
+				</tr>
+
+
+			</c:forEach>
+		</table>
+	</form>
 
 
 	<hr color="blue">

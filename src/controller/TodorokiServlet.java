@@ -32,6 +32,7 @@ public class TodorokiServlet extends HttpServlet {
 			List<Master> masterList = masterDao.findAll();
 			request.setAttribute("masterList", masterList);
 
+			//指定された日付けのイベント時間帯も表示
 			String rdate = request.getParameter("rdate");
 			if (rdate != null) {
 				List<Master> planList = new ArrayList<>();
@@ -45,6 +46,7 @@ public class TodorokiServlet extends HttpServlet {
 				if (planList.size() == 0) {
 					request.setAttribute("planMessage", "予定はありません");
 				}
+
 			}
 			request.getRequestDispatcher("/WEB-INF/view/Todoroki.jsp")
 					.forward(request, response);

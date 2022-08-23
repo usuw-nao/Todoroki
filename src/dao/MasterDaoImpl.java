@@ -43,16 +43,16 @@ public class MasterDaoImpl implements MasterDao {
 		master.setId(rs.getInt("id"));
 		master.setName(rs.getString("name"));
 		master.setRdate(rs.getDate("rdate"));
-		master.setR08(rs.getString("r08"));
-		master.setR09(rs.getString("r09"));
-		master.setR10(rs.getString("r10"));
-		master.setR11(rs.getString("r11"));
-		master.setR12(rs.getString("r12"));
-		master.setR13(rs.getString("r13"));
-		master.setR14(rs.getString("r14"));
-		master.setR15(rs.getString("r15"));
-		master.setR16(rs.getString("r16"));
-		master.setR17(rs.getString("r17"));
+		master.setR08(rs.getInt("r08"));
+		master.setR09(rs.getInt("r09"));
+		master.setR10(rs.getInt("r10"));
+		master.setR11(rs.getInt("r11"));
+		master.setR12(rs.getInt("r12"));
+		master.setR13(rs.getInt("r13"));
+		master.setR14(rs.getInt("r14"));
+		master.setR15(rs.getInt("r15"));
+		master.setR16(rs.getInt("r16"));
+		master.setR17(rs.getInt("r17"));
 
 		return master;
 
@@ -66,16 +66,16 @@ public class MasterDaoImpl implements MasterDao {
 					+ "?,?,?,?,?,?,?,?,? )";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setObject(1, master.getId(), Types.INTEGER);
-			stmt.setString(2, master.getR08());
-			stmt.setString(3, master.getR09());
-			stmt.setString(4, master.getR10());
-			stmt.setString(5, master.getR11());
-			stmt.setString(6, master.getR12());
-			stmt.setString(7, master.getR13());
-			stmt.setString(8, master.getR14());
-			stmt.setString(9, master.getR15());
-			stmt.setString(10, master.getR16());
-			stmt.setString(11, master.getR17());
+			stmt.setObject(2, master.getR08(), Types.INTEGER);
+			stmt.setObject(3, master.getR09(), Types.INTEGER);
+			stmt.setObject(4, master.getR10(), Types.INTEGER);
+			stmt.setObject(5, master.getR11(), Types.INTEGER);
+			stmt.setObject(6, master.getR12(), Types.INTEGER);
+			stmt.setObject(7, master.getR13(), Types.INTEGER);
+			stmt.setObject(8, master.getR14(), Types.INTEGER);
+			stmt.setObject(9, master.getR15(), Types.INTEGER);
+			stmt.setObject(10, master.getR16(), Types.INTEGER);
+			stmt.setObject(11, master.getR17(), Types.INTEGER);
 
 			stmt.executeUpdate();
 
