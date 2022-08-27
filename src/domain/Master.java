@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Master {
 	private Integer id;
+	private Integer reserveId;
 	private String name;
 	private Date rdate;
 	private Integer r08;
@@ -23,6 +24,14 @@ public class Master {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Integer getReserveId() {
+		return reserveId;
+	}
+
+	public void setReserveId(Integer reserveId) {
+		this.reserveId = reserveId;
 	}
 
 	public String getName() {

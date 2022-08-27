@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.DaoFactory;
 import domain.Account;
 
 /**
@@ -32,29 +33,36 @@ public class Form extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String name=request.getParameter("name");
-		Integer age=Integer.parseInt("age");
-		String email=request.getParameter("email");
-		Integer fno=Integer.parseInt("fno");
+		//情報を受け取る
+		String name = request.getParameter("name");
+		Integer age = Integer.parseInt("age");
+		String email = request.getParameter("email");
+		Integer fno = Integer.parseInt("fno");
 
 		//バリデーション
 
+		//情報をDBに入れていく
 		try {
-			Account account =new Account();
+			Account account = new Account();
 			account.setName(name);
 			account.setAge(age);
 			account.setEmail(email);
 			account.setFno(fno);
+			
+			IventDao iventDao = DaoFactory.createIventDao();
+			iventDao.insert(ivent);
+			
+			
+			
+		
+			// adultテーブルのiventの回数を一つ増やす
+			Adult adult = (Adult) request.getSession().getAttribute("adult");
+			DaoFactory.createAdultDao().update(adult.getId());
+			
 
-
+		} catch (Exception e) {
+			throw new ServletException(e);
 		}
-
-
-
-
-
-
-
 
 	}
 

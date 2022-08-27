@@ -6,6 +6,8 @@ public class Account {
 	private Integer age;
 	private String email;
 	private Integer fno;
+	private String reserve;
+	private Integer reserveId;
 
 	public Integer getId() {
 		return id;
@@ -45,6 +47,22 @@ public class Account {
 
 	public void setFno(Integer fno) {
 		this.fno = fno;
+	}
+
+	public String getReserve() {
+		return reserve;
+	};
+
+	public void setReserve(String reserve) {
+		this.reserve = reserve;
+	}
+
+	public Integer getReserveId() {
+		return reserveId;
+	}
+
+	public void setReserveId(Integer reserveId) {
+		this.reserveId = reserveId;
 	}
 
 }

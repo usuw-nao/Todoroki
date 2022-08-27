@@ -41,6 +41,7 @@ public class MasterDaoImpl implements MasterDao {
 	private Master mapToMaster(ResultSet rs) throws Exception {
 		Master master = new Master();
 		master.setId(rs.getInt("id"));
+		master.setReserveId(rs.getInt("reserve_id"));
 		master.setName(rs.getString("name"));
 		master.setRdate(rs.getDate("rdate"));
 		master.setR08(rs.getInt("r08"));
@@ -62,20 +63,21 @@ public class MasterDaoImpl implements MasterDao {
 	public void insert(Master master) throws Exception {
 		try {
 			Connection con = ds.getConnection();
-			String sql = "insert into master values(?,now(),?,"
+			String sql = "insert into master values(?,?,now(),?,"
 					+ "?,?,?,?,?,?,?,?,? )";
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setObject(1, master.getId(), Types.INTEGER);
-			stmt.setObject(2, master.getR08(), Types.INTEGER);
-			stmt.setObject(3, master.getR09(), Types.INTEGER);
-			stmt.setObject(4, master.getR10(), Types.INTEGER);
-			stmt.setObject(5, master.getR11(), Types.INTEGER);
-			stmt.setObject(6, master.getR12(), Types.INTEGER);
-			stmt.setObject(7, master.getR13(), Types.INTEGER);
-			stmt.setObject(8, master.getR14(), Types.INTEGER);
-			stmt.setObject(9, master.getR15(), Types.INTEGER);
-			stmt.setObject(10, master.getR16(), Types.INTEGER);
-			stmt.setObject(11, master.getR17(), Types.INTEGER);
+			stmt.setObject(1, master.getReserveId(), Types.INTEGER);
+			stmt.setString(2, master.getName());
+			stmt.setObject(3, master.getR08(), Types.INTEGER);
+			stmt.setObject(4, master.getR09(), Types.INTEGER);
+			stmt.setObject(5, master.getR10(), Types.INTEGER);
+			stmt.setObject(6, master.getR11(), Types.INTEGER);
+			stmt.setObject(7, master.getR12(), Types.INTEGER);
+			stmt.setObject(8, master.getR13(), Types.INTEGER);
+			stmt.setObject(9, master.getR14(), Types.INTEGER);
+			stmt.setObject(10, master.getR15(), Types.INTEGER);
+			stmt.setObject(11, master.getR16(), Types.INTEGER);
+			stmt.setObject(12, master.getR17(), Types.INTEGER);
 
 			stmt.executeUpdate();
 
@@ -86,10 +88,10 @@ public class MasterDaoImpl implements MasterDao {
 	}
 
 	@Override
-	public void updated(Master master) throws Exception {
+	public void update(Integer id) throws Exception {
 		try (Connection con = ds.getConnection()) {
-			String sql = "UPDATE master "
-					+ " SET rdate = ?"
+			String sql = "UPDATE master set ? = "
+					+ "  ? -1 "
 					+ " WHERE id = ?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setDate(1, master.getRdate());

@@ -9,7 +9,7 @@ public interface MasterDao {
 
 	void insert(Master master) throws Exception;
 
-	void updated(Master master) throws Exception;
+	void update(Integer id) throws Exception;
 
 	void delete(Master master) throws Exception;
 
